@@ -1,47 +1,39 @@
 import numpy as np
-#from models.GDN import GDN
-#from test  import test
-#from util.TimeDataset import TimeDataset
-#import torch
-#from torch.utils.data import DataLoader, random_split, Subset
+from models.GDN import GDN
+from test  import test
+from util.TimeDataset import TimeDataset
+import torch
+from torch.utils.data import DataLoader, random_split, Subset
 import random
 import matplotlib.pyplot as plt
 import pandas as pd
-#from util.env import get_device, set_device
-#from util.preprocess import build_loc_net, construct_data
+from util.env import get_device, set_device
+from util.preprocess import build_loc_net, construct_data
 
-#from util.TimeDataset import TimeDataset
-
-
-#from models.GDN import GDN
-
-#from util.train import train
-#from test  import test
-#from util.evaluate import get_err_scores, get_best_performance_data, get_val_performance_data, get_full_err_scores
+from util.TimeDataset import TimeDataset
 
 
+from models.GDN import GDN
 
-#adj_25=np.genfromtxt('/home/student/Documents/Data/Training_Set_Day_1/adj25d_th09.csv', delimiter=',')
-df_train=pd.read_csv('//home/killian/Documents/Data/results/label_full_mat_pck_loss.csv', skiprows=range(1,3000), usecols=range(1,20), nrows=10000)#,delimiter=';')
+from util.train import train
+from test  import test
+from util.evaluate import get_err_scores, get_best_performance_data, get_val_performance_data, get_full_err_scores
+
+
+#my adjacency matrix of the graph structure in csv format
+adj_25=np.genfromtxt('/home/student/Documents/Data/Training_Set_Day_1/adj25d_th09.csv', delimiter=',')
+#train
+df_train=pd.read_csv('//home/killian/Documents/Data/results/label_full_mat_pck_loss.csv', skiprows=range(1,3000), usecols=range(1,20), nrows=10000)
 columns_train=df_train.columns
-#print(df_train.iloc[10][:1000])
-plt.plot(df_train[10][:])
-plt.show()
-#df_val=pd.read_csv('/home/student/Documents/Data/Training_Set_Day_8/dataset_end_total_preprocessed.csv', nrows=100000)#,delimiter=';') use second day of data to be good ?
+#val
+df_val=pd.read_csv('/home/student/Documents/Data/Training_Set_Day_8/dataset_end_total_preprocessed.csv', nrows=100000)
 columns_val=df_val.columns
-
+#test
 df_test=pd.read_csv('/home/student/Documents/Data/40/physical_level/dataset_test_full_server_1_preprocessed.csv', nrows=100000)
 columns_test=df_test.columns
 
 
-#remove this value that is not in train but dont understand why ...
-df_val.drop('node_vmstat_pgfault_server_1', axis=1, inplace=True)
-df_test.drop('Unnamed: 0.1', axis=1 , inplace=True)
-df_test.drop('node_vmstat_pgfault_server_1', axis=1 , inplace=True)
-#removing unnamed
-df_val=df_val.iloc[:,1:]
-df_train=df_train.iloc[:,1:] 
-df_test=df_test.iloc[:, 1:]
+
 print(df_val.shape)
 print(df_train.shape)
 print(df_test.shape)
@@ -49,7 +41,6 @@ columns_train=df_train.columns
 columns_val=df_val.columns
 columns_test=df_test.columns
 
-#########
 def fil_edges(Mat):
     edges_index=[]
     X1=[]
@@ -64,24 +55,23 @@ def fil_edges(Mat):
     edges_index.append(X1)
     edges_index.append(X2)
     edges_index=torch.tensor(edges_index)
-    #edges_index=edges_index.float()
     return edges_index
 
 
 batch=128
-epoch=3 #100
-slide_win=30  #peut-etre a modif aussi 15 c short #15
-dim=64 #à changer
-slide_stride=5 #?
+epoch=20
+slide_win=30  
+dim=64
+slide_stride=5
 comment=''
 random_seed=0
 out_layer_num=1
 out_layer_inter_dim=256
-decay=0 #?
-val_ratio=0.1 # pas sur idée ce que c
-topk=20 #normalement inutil
+decay=0 
+val_ratio=0.1 
+topk=20 #not used except for random tasks
 dataset='5G3E'
-report = 'best' #jsp ce que c
+report = 'best'
 device='cpu' #'cida' if GPU available but here CPU
 load_model_path=''
 
@@ -109,7 +99,6 @@ env_config={
     'load_model_path': load_model_path
 }
 
-########
 
 
 def get_loaders( train_dataset, seed, batch, val_ratio=0.1):
@@ -134,23 +123,6 @@ def get_loaders( train_dataset, seed, batch, val_ratio=0.1):
 
     return train_dataloader, val_dataloader
 
-def get_representation(test_result): #not finished
-    feature_num = len(test_result[0][0])
-    np_test_result = np.array(test_result)
-
-    test_labels = np_test_result[2, :, 0].tolist()
-
-    test_scores, normal_scores = get_full_err_scores(test_result, test_result)
-
-    top1_best_info = get_best_performance_data(test_scores, test_labels, topk=1) 
-  
-
-    print('=========================** Result **============================\n')
-
-    info = None
-    if env_config['report'] == 'best':
-        info = top1_best_info
-    return
    
 
 def get_score( test_result, val_result):
@@ -224,34 +196,12 @@ model=GDN(edge_index_sets, len(feature_map),
                 topk=train_config['topk']
             ).to(device)
 
-#print(model)
 model.load_state_dict(torch.load('pretrained/best_07|15-11:07:55.pt'))
-model.eval()  # Set the model to evaluation mode
+model.eval()
 print('model loaded')
 
 best_model = model.to(device)
 avg_loss, table_result = test(best_model, test_dataloader)
-
-table_result_T_predict=np.array(table_result[0]).T
-table_result_T_ground=np.array(table_result[1]).T
-table_result_T_label=np.array(table_result[2]).T
-
-print(len(table_result[0]))
-print(len(table_result[0][0]))
-print(len(table_result_T_predict))
-print(len(table_result_T_predict[0]))
-
-plt.plot(table_result_T_predict[86][11000:13000])
-plt.plot(table_result_T_ground[86][11000:13000])
-plt.plot(table_result_T_label[86][11000:13000])
-plt.show()
-
-#wrong place but impossible to lauc=nch this here ...
-np.savetxt('/home/student/Documents/Data/Training_Set_Day_1/predict',table_result_T_predict, delimiter=',')
-np.savetxt('/home/student/Documents/Data/Training_Set_Day_1/ground',table_result_T_ground, delimiter=',')
-np.savetxt('/home/student/Documents/Data/Training_Set_Day_1/label',table_result_T_label, delimiter=',')
-
-
 val_result = test(best_model, val_dataloader)
 val_avg, table_val=val_result[0], val_result[1]
 get_score(table_result, table_val)
