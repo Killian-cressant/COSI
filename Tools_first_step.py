@@ -297,7 +297,6 @@ def get_x_axis_current(vectore_results, x_axis):
 
 
 
-####TODO : Their is an issue if the first point is not link to anything I think but did not update yet
 """ This function get x,y and z axis for all edges in the graph, print the total amount off edges in the graph and all nodes sort by names entry """
 def get_edges_v2(cosin_score, threashold, vectore_results):
     x,y,z=[],[],[]
@@ -319,7 +318,6 @@ def get_edges_v2(cosin_score, threashold, vectore_results):
         z_memory=z_frst
 
         if score>threashold:
-                #print(f'name1, name2 , score : {(name1, name2)}, {score}')
 
                 total_counter_edges+=1
                 x.append(vectore_results[name1][0])
@@ -331,7 +329,6 @@ def get_edges_v2(cosin_score, threashold, vectore_results):
                 z.append(vectore_results[name2][2])
 
 
-                #print(f"x-1 : {x[-2]} x memory : {x_memory}")
                 if (x[-2]==x_memory) and (y[-2]==y_memory) and (z[-2]==z_memory):
                     X_per_node.append((name1,name2))
                 else:
@@ -350,11 +347,8 @@ def get_edges_v3(cosin_score, threashold, vectore_results, regex_word, both_matc
     total_counter_edges=0
 
     x_frst=list(vectore_results.values())[0][0]
-    #print(x_frst)
     y_frst=list(vectore_results.values())[0][1]
-    #print(y_frst)
     z_frst=list(vectore_results.values())[0][2]
-    #print(z_frst)
     r_express=".*"+regex_word+".*"
     all_nodes=[]
     X_per_node=[]
@@ -368,7 +362,6 @@ def get_edges_v3(cosin_score, threashold, vectore_results, regex_word, both_matc
                     z_memory=z_frst
 
                     if score>threashold:
-                            #print(f'name1, name2 , score : {(name1, name2)}, {score}')
 
                             total_counter_edges+=1
                             x.append(vectore_results[name1][0])
@@ -380,7 +373,6 @@ def get_edges_v3(cosin_score, threashold, vectore_results, regex_word, both_matc
                             z.append(vectore_results[name2][2])
 
 
-                            #print(f"x-1 : {x[-2]} x memory : {x_memory}")
                             if (x[-2]==x_memory) and (y[-2]==y_memory) and (z[-2]==z_memory):
                                 X_per_node.append((name1,name2))
                             else:
@@ -398,8 +390,7 @@ def get_edges_v3(cosin_score, threashold, vectore_results, regex_word, both_matc
                     z_memory=z_frst
 
                     if score>threashold:
-                            #print(f'name1, name2 , score : {(name1, name2)}, {score}')
-
+                            
                             total_counter_edges+=1
                             x.append(vectore_results[name1][0])
                             y.append(vectore_results[name1][1])
@@ -410,7 +401,6 @@ def get_edges_v3(cosin_score, threashold, vectore_results, regex_word, both_matc
                             z.append(vectore_results[name2][2])
 
 
-                            #print(f"x-1 : {x[-2]} x memory : {x_memory}")
                             if (x[-2]==x_memory) and (y[-2]==y_memory) and (z[-2]==z_memory):
                                 X_per_node.append((name1,name2))
                             else:
