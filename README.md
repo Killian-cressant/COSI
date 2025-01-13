@@ -8,6 +8,6 @@
   
   4) test.py is the main test file for testing the GDN
   
-  5) Util is a set of file used from Start/test
+  5) Util is a set of files used from Start/test
   
   6) models regroup GDN and GDN utilitary file  
