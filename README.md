@@ -1,6 +1,6 @@
 
 
-# Here is a short README for using graph4anomaly detection
+# Here is a short explanation for using graph4anomaly detection
 
 
 Code implementation for : GNN graph structures in network anomaly detection (NOMS 2025)
