@@ -1,4 +1,16 @@
+
+
 # Here is a short README for using graph4anomaly detection
+
+
+Code implementation for : GNN graph structures in network anomaly detection (NOMS 2025)
+
+Requirements for GDN :
+
+    Python >= 3.6
+    cuda == 10.2 (not working on cuda 12.x, if so, use cpu instead)
+    Pytorch==1.5.1
+    PyG: torch-geometric==1.5.0
 
   1) Short.ipynb is the file that is used to create the graph structure. Here we used a preprocessed dataset from the 5G3E dataset : https://github.com/cedric-cnam/5G3E-dataset
 
@@ -10,4 +22,6 @@
   
   5) Util is a set of files used from Start/test
   
-  6) models regroup GDN and GDN utilitary file  
+  6) models regroup GDN,LSTM-AE and GDN utilitary file
+  
+  7) plot.ipynb is the file used for ploting 3D figure in the article   
