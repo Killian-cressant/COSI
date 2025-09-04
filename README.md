@@ -1,6 +1,6 @@
 
 
-# Here is a short explanation for using graph4anomaly detection
+# Here is a short explanation for using COSI model for anomaly detection
 
 
 Code implementation for : GNN graph structures in network anomaly detection (NOMS 2025)
@@ -24,4 +24,11 @@ Requirements for GDN :
   
   6) models regroup GDN,LSTM-AE and GDN utilitary file
   
-  7) plot.ipynb is the file used for ploting 3D figure in the article   
+  7) plot.ipynb is the file used for ploting 3D figure in the article
+
+Code implementation for : journal extension
+
+Important part of the code was developped in this repository : https://github.com/GraGODs/GraGOD
+
+please follow the project initialization process for using gradgod.
+
