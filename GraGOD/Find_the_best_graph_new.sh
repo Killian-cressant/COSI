@@ -4,8 +4,8 @@
 
 NUMBER_OF_TEST=5
 
-MY_PARAM_FILE="/home/killian/Documents/python_project/GraGOD/models/gcn/params_swat.yaml"
-MY_GRAPH="/home/killian/Documents/Data/random_swat/adj"
+MY_PARAM_FILE="/path/GraGOD/models/gcn/params_swat.yaml"
+MY_GRAPH="/path_for_random_matrix/random_swat/adj"
 
 
 
