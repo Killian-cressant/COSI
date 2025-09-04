@@ -3,8 +3,8 @@
 
 NUMBER_OF_TEST=5
 
-MY_PARAM_FILE="/home/killian/Documents/python_project/GraGOD/models/gcn/params_swat.yaml"
-MY_GRAPH="/home/killian/Documents/Data/random_swat/Kalof55.csv"
+MY_PARAM_FILE="/path/GraGOD/models/gcn/params_swat.yaml"
+MY_GRAPH="/my_graph_path.csv"
 
 sliding_windows=(5 10 20 30 40 50 60)
 dims=(30 40 50 60 70 80 90)
