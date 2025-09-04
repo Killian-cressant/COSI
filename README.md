@@ -13,18 +13,19 @@ Requirements for GDN :
     PyG: torch-geometric==1.5.0
 
   1) Short.ipynb is the file that is used to create the graph structure. Here we used a preprocessed dataset from the 5G3E dataset : https://github.com/cedric-cnam/5G3E-dataset
+     Short Cisco and SWaT are two others file that are doing the same for CISCO and SWaT dataset
 
-  2) Tools_first_step.py is a utilitary file used in the notebook, we can find all function that I am using here, with anterior version for some of them.
+  3) Tools_first_step.py is a utilitary file used in the notebook, we can find all function that I am using here, with anterior version for some of them.
   
-  3) Start.py is the main file for the GDN training algorithm from the code provided here : https://github.com/d-ailin/GDN. This version is not using bash for launching script.
+  4) Start.py is the main file for the GDN training algorithm from the code provided here : https://github.com/d-ailin/GDN. This version is not using bash for launching script.
   
-  4) test.py is the main test file for testing the GDN
+  5) test.py is the main test file for testing the GDN
   
-  5) Util is a set of files used from Start/test
+  6) Util is a set of files used from Start/test
   
-  6) models regroup GDN,LSTM-AE and GDN utilitary file
+  7) models regroup GDN,LSTM-AE and GDN utilitary file
   
-  7) plot.ipynb is the file used for ploting 3D figure in the article
+  8) plot.ipynb is the file used for ploting 3D figure in the article
 
 Code implementation for : journal extension
 
