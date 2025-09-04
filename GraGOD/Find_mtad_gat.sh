@@ -3,7 +3,7 @@
 
 NUMBER_OF_TEST=3
 
-MY_PARAM_FILE="/home/killian/Documents/python_project/GraGOD/models/mtad_gat/params_swat.yaml"
+MY_PARAM_FILE="/my_path/GraGOD/models/mtad_gat/params_swat.yaml"
 
 
 # Iterate over all combinations
@@ -20,7 +20,7 @@ for i in $(seq 0 "$NUMBER_OF_TEST"); do
      --model mtad_gat \
      --dataset swat \
      --params_file $MY_PARAM_FILE \
-      --edge_path /home/killian/Documents/Data/Swat/edges_index_swat.txt \
+      --edge_path /path_for_edge/edges_index_swat.txt \
     )
             
     # Define the file and new version number
@@ -37,7 +37,7 @@ for i in $(seq 0 "$NUMBER_OF_TEST"); do
      --model mtad_gat \
      --dataset swat \
      --params_file $MY_PARAM_FILE \
-     --edge_path /home/killian/Documents/Data/Swat/edges_index_swat.txt \
+     --edge_path /path_for_edge/edges_index_swat.txt \
     >> results_gradgod.txt &)
 
 
