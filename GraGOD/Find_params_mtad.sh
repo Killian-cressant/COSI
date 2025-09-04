@@ -3,8 +3,8 @@
 
 NUMBER_OF_TEST=5
 
-MY_PARAM_FILE="/home/killian/Documents/python_project/GraGOD/models/mtad_gat/params_swat.yaml"
-MY_GRAPH="/home/killian/Documents/Data/random_swat/Kalof55.csv"
+MY_PARAM_FILE="path/GraGOD/models/mtad_gat/params_swat.yaml"
+MY_GRAPH="/my_path_for_my_graph.csv"
 
 window_sizes=(5 10 20 30 40 50 60)
 kernel_sizes=(3 5 7 10)
